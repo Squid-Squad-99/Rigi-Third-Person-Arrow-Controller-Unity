@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55c46f9a65494d40bdfb26806a528fc, type: 3}
+  m_Name: BaseJumpStartState
+  m_EditorClassIdentifier: 
+  ActionSOs:
+  - {fileID: 11400000, guid: 45904a915d3e71245be744fa6a3c2e46, type: 2}
+  - {fileID: 11400000, guid: 2e4a9b04533b7f244a6e185d29d113ec, type: 2}
+  - {fileID: 11400000, guid: da9469cbc93c1564ca65aad521d6f044, type: 2}
+  - {fileID: 11400000, guid: 39941bcf06c848549b70c2fcc3fc872b, type: 2}
+  - {fileID: 11400000, guid: d9e083d842738a74ca3b29eb321af06e, type: 2}
+  - {fileID: 11400000, guid: 57a0f90d2e14c154e8d938efc456caaf, type: 2}
+  - {fileID: 11400000, guid: 248f8559dd7633b43af7ee1eacf0bb52, type: 2}
+  - {fileID: 11400000, guid: 39f159fceda7ae94cac58155cf7f42b9, type: 2}
