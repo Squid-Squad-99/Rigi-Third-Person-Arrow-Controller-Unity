@@ -26,17 +26,19 @@ namespace RigiArcher.CharacterAction{
     {
         // reference
         private Rigidbody _rigidbody;
+        private ICheckIsGrounded _checkIsGrounded;
 
         public TransitionByFreeFallAction(ActionSO actionSO, StateMachine stateMachine) : base(actionSO, stateMachine){}
 
         public override void Awake()
         {
             _rigidbody = ThisStateMachine.GetComponent<Rigidbody>();
+            _checkIsGrounded = ThisStateMachine.GetComponent<ICheckIsGrounded>();
         }
 
         public override void FixedUpdate()
         {
-            if(_rigidbody.velocity.y <= -((TransitionByFreeFallActionSO)OriginSO).FreeFallMinSpeed){
+            if(_rigidbody.velocity.y <= -((TransitionByFreeFallActionSO)OriginSO).FreeFallMinSpeed && _checkIsGrounded.IsGrounded == false){
                 // is free falling
                 ThisStateMachine.SwitchState(((TransitionByFreeFallActionSO)OriginSO).ToSTateSO);
             }
