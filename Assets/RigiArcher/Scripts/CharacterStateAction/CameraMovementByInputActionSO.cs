@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Unity.Netcode;
 
 using RigiArcher.StateMachineElement;
 using RigiArcher.CharacterInput;
@@ -17,6 +18,11 @@ namespace RigiArcher.CharacterAction{
         public int TopClamp;
         [Range(10, 80)]
         public int BottomClamp;
+
+        [Header("If Networking")]
+        public bool IsNetworking;
+        public bool EnableOnServer;
+        public bool EnableOnClient;
 
         public override Action GetAction(StateMachine stateMachine)
         {
@@ -64,6 +70,14 @@ namespace RigiArcher.CharacterAction{
 
         public override void LateUpdate()
         {
+            if(((CameraMovementByInputActionSO)OriginSO).IsNetworking && NetworkManager.Singleton != null){
+                if(NetworkManager.Singleton.IsServer && ((CameraMovementByInputActionSO)OriginSO).EnableOnServer == false){
+                    return;
+                }
+                else if(NetworkManager.Singleton.IsClient && ((CameraMovementByInputActionSO)OriginSO).EnableOnClient == false){
+                    return;
+                }
+            }
             RotateCamera(_inputLookValue);
         }
 

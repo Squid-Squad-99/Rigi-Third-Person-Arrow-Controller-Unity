@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 using RigiArcher.StateMachineElement;
+using RigiArcher.CharacterInput;
 
 namespace RigiArcher.CharacterAction{
 

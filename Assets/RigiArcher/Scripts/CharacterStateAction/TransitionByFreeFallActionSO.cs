@@ -38,7 +38,7 @@ namespace RigiArcher.CharacterAction{
 
         public override void FixedUpdate()
         {
-            if(_rigidbody.velocity.y <= -((TransitionByFreeFallActionSO)OriginSO).FreeFallMinSpeed && _checkIsGrounded.IsGrounded == false){
+            if(_rigidbody.velocity.y <= -((TransitionByFreeFallActionSO)OriginSO).FreeFallMinSpeed){
                 // is free falling
                 ThisStateMachine.SwitchState(((TransitionByFreeFallActionSO)OriginSO).ToSTateSO);
             }
