@@ -9,7 +9,7 @@ namespace RigiArcher.MeshSocket{
         public MeshSocketManager.SocketIdEnum SocketId;
 
         // reference
-        Transform _attachPoint;
+        [SerializeField] Transform _attachPoint;
 
         private void Start() {
             _attachPoint = transform.GetChild(0);

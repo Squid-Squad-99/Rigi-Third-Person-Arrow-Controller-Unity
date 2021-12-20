@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b1d578cf314784ab15a03d6b6a5bbc, type: 3}
-  m_Name: ToBaseMoveStateWhenGroundedActionSO
+  m_Script: {fileID: 11500000, guid: 6ace8984cbcd3c64e84a53ca9848737c, type: 3}
+  m_Name: CameraMovementByInput
   m_EditorClassIdentifier: 
-  ToStateSO: {fileID: 11400000, guid: ce11dcb91f125da49a76416c5c1c80b9, type: 2}
-  TransitWhenGroundedIs: 1
+  MouseSensitivity: 2
+  TopClamp: 59
+  BottomClamp: 60

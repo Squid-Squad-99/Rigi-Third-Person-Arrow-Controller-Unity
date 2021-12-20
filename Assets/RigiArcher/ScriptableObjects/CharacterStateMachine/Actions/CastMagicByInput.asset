@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72773409bb5a78246afd6a65e4421b4c, type: 3}
-  m_Name: MoveByInputActionSO
+  m_Script: {fileID: 11500000, guid: af3a3e33e3ce09247ad1894bc972327e, type: 3}
+  m_Name: CastMagicByInput
   m_EditorClassIdentifier: 
-  MaxMoveSpeed: 6
-  SpeedChangeRate: 20
