@@ -10,6 +10,7 @@ namespace RigiArcher.Magic{
     public class MagicManager : MonoBehaviour
     {
         public enum MagicIdEnum{
+            None,
             Rope,
         }
         
