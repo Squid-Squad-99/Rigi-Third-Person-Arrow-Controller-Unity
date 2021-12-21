@@ -46,6 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _magicId: 1
+  _coolDownTime: 1
+  _castMagicTime: 0.4
+  _coolDownTimeDelta: 0
+  _castMagicTimeDelta: 0
+  CastMagicFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  SpellFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2148897697296496068
 GameObject:
   m_ObjectHideFlags: 0

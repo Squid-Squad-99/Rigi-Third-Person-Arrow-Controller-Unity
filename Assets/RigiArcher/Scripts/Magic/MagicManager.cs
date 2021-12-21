@@ -9,6 +9,7 @@ namespace RigiArcher.Magic{
     /// <summary>
     /// we use left hand to cast a magic, ext. rope
     /// provide Equip Method to equip magic to character
+    /// 1. basic casting animation
     /// </summary>
     public class MagicManager : MonoBehaviour
     {
@@ -19,7 +20,7 @@ namespace RigiArcher.Magic{
 
         [Header("Setting")]
         [SerializeField] MagicIdEnum _InitEquippedMagicId;
-        [SerializeField] float _EnableAnimLayerTime;
+        [SerializeField] float _AnimLayerSmoothTime;
         
         [Header("Data")]
         [SerializeField] MagicIdEnum _currentEquippedMagicId;
@@ -44,7 +45,7 @@ namespace RigiArcher.Magic{
             _AnimParamCastMagicId = Animator.StringToHash("CastMagic");
 
             // populate magic map
-            MagicBase[] magics = GetComponentsInChildren<MagicBase>();
+            MagicBase[] magics = GetComponentsInChildren<MagicBase>(true);
             foreach(MagicBase magic in magics){
                 _magicMap.Add(magic.MagicId, magic);
             }
@@ -60,50 +61,76 @@ namespace RigiArcher.Magic{
             // set to current magic
             _currentEquippedMagicId = magicId;
 
-            // hold to right hand
+            //equip magic
+            CurrentEquipedMagic.Equip();
+
+            // hold to left hand
             _meshSocketManager.Attach(CurrentEquipedMagic.transform, MeshSocketManager.SocketIdEnum.LeftHand);
         }
 
         public void CastMagic(){
-            // check have equip
+            // check have equip 
             if(_currentEquippedMagicId == MagicIdEnum.None) Debug.LogWarning("[Magic Manger] no magic equip");
 
-            if(CurrentEquipedMagic.ColdDownTimeDelta <= 0){
-                // play cast magic animation (visual)
-                StartCoroutine(PlayCastMagicAnimation());
-                // cast magic with cast time (logic)
-                StartCoroutine(CastingMagicWithCastTime());
+            if(CurrentEquipedMagic.CanCastMagic())
+            {
+                // hook magic's events
+                CurrentEquipedMagic.CastMagicFinish.AddListener(OnCastMagicFinish);
+                CurrentEquipedMagic.SpellFinish.AddListener(OnSpellMagicFinish);
+                // play cast magic animation for character
+                PlayCastMagicAnimation();
+                // cast magic
+                CurrentEquipedMagic.CastMagic();
+            }
+            else
+            {
+                Debug.Log("[MagicManager] can't cast magic, (not cool down yet");
             }
 
-        }
+        }   
 
-        private IEnumerator CastingMagicWithCastTime(){
-            yield return new WaitForSeconds(CurrentEquipedMagic.CastMagicTime);
-            CurrentEquipedMagic.CastMagic();
-        }
-
-        private IEnumerator PlayCastMagicAnimation(){
-            // enable left w  rm layer
-            yield return EnableLeftHandLayer();
+        private void PlayCastMagicAnimation(){
             // play cast magic animation
             _animator.SetBool(_AnimParamCastMagicId, true);
+            // enable anim left hand layer active
+            SetLeftHandLayerActive(true);
         }
 
-        public void OnCastMagicAnimationEnd(){
+        private void OnCastMagicFinish(){
             // set param to false
             _animator.SetBool(_AnimParamCastMagicId, false);
         }
 
-        private float _layerChangeVel;
-        private IEnumerator EnableLeftHandLayer(){
+        private void OnSpellMagicFinish()
+        {
+            // disable anim left hand layer
+            SetLeftHandLayerActive(false);
+        }
+
+        private bool _haveSetLayerRoutine = false;
+        private void SetLeftHandLayerActive(bool enable)
+        {
+            if (_haveSetLayerRoutine)
+            {
+                StopCoroutine("SetLeftHandLayerActiveRoutine");
+            }
+
+            _haveSetLayerRoutine = true;
+            StartCoroutine("SetLeftHandLayerActiveRoutine", enable);
+        }
+
+        private float _layerChangeVel, _targetValue;
+        private IEnumerator SetLeftHandLayerActiveRoutine(bool enable){
             float currentLayerWeight = _animator.GetLayerWeight(_leftArmAnimLayerIndex);
+            float _targetValue = enable ? 1 : 0;
             while(true){
-                float targetWeight = Mathf.SmoothDamp(currentLayerWeight, 1f, ref _layerChangeVel, _EnableAnimLayerTime);
-                _animator.SetLayerWeight(_leftArmAnimLayerIndex, targetWeight);
-                currentLayerWeight = targetWeight;
-                if(targetWeight >= 0.99) break;
+                float weight = Mathf.SmoothDamp(currentLayerWeight, _targetValue, ref _layerChangeVel, _AnimLayerSmoothTime);
+                _animator.SetLayerWeight(_leftArmAnimLayerIndex, weight);
+                currentLayerWeight = weight;
+                if(Mathf.Abs(_targetValue - weight) <= 0.01) break;
                 yield return null;
             }
+            _haveSetLayerRoutine = false;
         }
     }
 

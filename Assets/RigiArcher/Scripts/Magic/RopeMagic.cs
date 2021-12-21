@@ -1,37 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RigiArcher.Magic{
 
     public class RopeMagic : MagicBase
     {
-        public override MagicManager.MagicIdEnum MagicId => _magicId;
-
-        public override float ColdDownTime => _coldDownTime;
-
-        public override float ColdDownTimeDelta => _coldDownTimeDelta;
-
-        public override float CastMagicTime => _castMagicTime;
-
-        [SerializeField] MagicManager.MagicIdEnum _magicId;
-        [SerializeField] float _coldDownTime;
-        [SerializeField] float _coldDownTimeDelta;
-        [SerializeField] float _castMagicTime;
-
-        public override void CastMagic()
+        protected override void UseMagic()
         {
-            
+            StartCoroutine(Foo());
         }
 
-        public override void Equip()
+        private IEnumerator Foo()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public override void UnEquip()
-        {
-            throw new System.NotImplementedException();
+            yield return new WaitForSeconds(2);
+            Debug.Log("Finish spell");
+            SpellFinish.Invoke();
         }
     }
 

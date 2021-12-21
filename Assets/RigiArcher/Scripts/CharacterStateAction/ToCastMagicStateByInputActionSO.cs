@@ -10,29 +10,30 @@ using RigiArcher.Magic;
 
 namespace RigiArcher.CharacterAction{
 
-    [CreateAssetMenu(menuName = "State Machine/Actions/Cast Magic By Input ActionSO")]
-    public class CastMagicByInputActionSO : ActionSO
+    [CreateAssetMenu(menuName = "State Machine/Actions/To Cast Magic State By Input ActionSO")]
+    public class ToCastMagicStateByInputActionSO : ActionSO
     {
+        [Header("Setting")]
+        public StateSO CastMagicState;
+
         public override Action GetAction(StateMachine stateMachine)
         {
-            return new CastMagicByInputAction(this, stateMachine);
+            return new ToCastMagicStateByInputAction(this, stateMachine);
         }
 
     }
 
-    public class CastMagicByInputAction : Action
+    public class ToCastMagicStateByInputAction : Action
     {
         // reference
         private UnityEvent _fireEvent;
-        private MagicManager _magicManager;
 
-        public CastMagicByInputAction(ActionSO actionSO, StateMachine stateMachine) : base(actionSO, stateMachine){}
+        public ToCastMagicStateByInputAction(ActionSO actionSO, StateMachine stateMachine) : base(actionSO, stateMachine){}
 
         public override void Awake()
         {
             // reference
             _fireEvent = ThisStateMachine.GetComponent<ICharacterInputBroadcaster>().InputFireEvent;
-            _magicManager = ThisStateMachine.GetComponent<MagicManager>();
         }
 
         public override void OnStateEnter()
@@ -47,7 +48,8 @@ namespace RigiArcher.CharacterAction{
 
         private void OnInputFire()
         {
-            _magicManager.CastMagic();
+            // change to cast magic state
+            ThisStateMachine.SwitchState(((ToCastMagicStateByInputActionSO)OriginSO).CastMagicState);
         }
     }
 }

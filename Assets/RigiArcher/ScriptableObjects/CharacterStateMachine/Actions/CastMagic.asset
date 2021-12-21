@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af3a3e33e3ce09247ad1894bc972327e, type: 3}
-  m_Name: CastMagicByInput
+  m_Script: {fileID: 11500000, guid: 269f346f5627448c4ba1b0ff6db1d557, type: 3}
+  m_Name: CastMagic
   m_EditorClassIdentifier: 
+  BaseState: {fileID: 11400000, guid: ce11dcb91f125da49a76416c5c1c80b9, type: 2}
