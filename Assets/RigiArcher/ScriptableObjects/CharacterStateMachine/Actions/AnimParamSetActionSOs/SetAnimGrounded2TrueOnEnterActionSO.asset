@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47431020a190e45448ea1999a68e76bf, type: 3}
+  m_Name: SetAnimGrounded2TrueOnEnterActionSO
+  m_EditorClassIdentifier: 
+  AnimParamName: Grounded
+  ParamType: 0
+  When: 1
+  BoolParamValue: 1
+  FloatParamValue: 0
+  IntParamValue: 0

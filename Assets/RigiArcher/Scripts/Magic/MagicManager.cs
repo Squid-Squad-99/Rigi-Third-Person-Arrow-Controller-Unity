@@ -33,7 +33,7 @@ namespace RigiArcher.Magic{
         private MeshSocketManager _meshSocketManager;
         private Animator _animator;
         private int _leftArmAnimLayerIndex;
-        private int _AnimParamCastMagicId;
+        private int _animParamCastMagicId;
 
 
 
@@ -42,7 +42,7 @@ namespace RigiArcher.Magic{
             _meshSocketManager = GetComponent<MeshSocketManager>();
             _animator = GetComponent<Animator>();
             _leftArmAnimLayerIndex = _animator.GetLayerIndex("LeftArm");
-            _AnimParamCastMagicId = Animator.StringToHash("CastMagic");
+            _animParamCastMagicId = Animator.StringToHash("CastMagic");
 
             // populate magic map
             MagicBase[] magics = GetComponentsInChildren<MagicBase>(true);
@@ -91,19 +91,19 @@ namespace RigiArcher.Magic{
 
         private void PlayCastMagicAnimation(){
             // play cast magic animation
-            _animator.SetBool(_AnimParamCastMagicId, true);
+            _animator.SetBool(_animParamCastMagicId, true);
             // enable anim left hand layer active
             SetLeftHandLayerActive(true);
         }
 
         private void OnCastMagicFinish(){
-            // set param to false
-            _animator.SetBool(_AnimParamCastMagicId, false);
+            // set anim param 
+            _animator.SetBool(_animParamCastMagicId, false);
         }
 
         private void OnSpellMagicFinish()
         {
-            // disable anim left hand layer
+            // set anim
             SetLeftHandLayerActive(false);
         }
 

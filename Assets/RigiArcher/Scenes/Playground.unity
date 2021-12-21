@@ -598,10 +598,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1385154637, guid: d983143f34e488440bd9a343ff4bf419, type: 3}
-      propertyPath: _AnimLayerSmoothTime
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 6479672269097394336, guid: d983143f34e488440bd9a343ff4bf419, type: 3}
       propertyPath: m_RootOrder
       value: 5
