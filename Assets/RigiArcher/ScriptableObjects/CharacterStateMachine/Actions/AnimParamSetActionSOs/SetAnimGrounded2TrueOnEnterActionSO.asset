@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimParamName: Grounded
   ParamType: 0
-  When: 1
+  When: 0
   BoolParamValue: 1
   FloatParamValue: 0
   IntParamValue: 0

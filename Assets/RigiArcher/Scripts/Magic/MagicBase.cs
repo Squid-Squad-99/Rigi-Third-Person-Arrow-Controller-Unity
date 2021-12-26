@@ -41,7 +41,12 @@ namespace RigiArcher.Magic{
         public bool IsSpelling => _isSpelling;
         public bool IsCoolDowning => _isCoolDowning;
 
+        // data
+        protected RigiArcherObject _magicUser;
+        protected Vector3 _AimPointAtCast;
+
         protected abstract void UseMagic();
+        public abstract void CancelMagic();
 
         public bool CanCastMagic()
         {
@@ -58,6 +63,7 @@ namespace RigiArcher.Magic{
             // count down cast time
             _castMagicTimeDelta = _castMagicTime;
             _isCasting = true;
+            _AimPointAtCast = _magicUser.AimPoint;
 
             while(_castMagicTimeDelta > 0)
             {
@@ -99,10 +105,12 @@ namespace RigiArcher.Magic{
             SpellFinish.AddListener(CleanUpEvent);
         }
 
-        public void Equip(){
+        public virtual void Equip(RigiArcherObject magicUser){
+            _magicUser = magicUser;
             gameObject.SetActive(true);
         }
-        public void UnEquip(){
+        public virtual void UnEquip(){
+            _magicUser = null;
             gameObject.SetActive(false);
         }
     }

@@ -15,8 +15,11 @@ namespace RigiArcher.CharacterInput
         public UnityEvent<Vector2> InputLookEvent => _inputLookEvent;
         public UnityEvent<Vector2> InputMoveEvent => _inputMoveEvent;
 
+        public UnityEvent InputAttackEvent => _inputAttachEvent;
+
         [SerializeField] UnityEvent _inputJumpEvent;
         [SerializeField] UnityEvent _inputFireEvent;
+        [SerializeField] UnityEvent _inputAttachEvent;
         [SerializeField] UnityEvent<Vector2> _inputLookEvent;
         [SerializeField] UnityEvent<Vector2> _inputMoveEvent;
 
@@ -49,6 +52,9 @@ namespace RigiArcher.CharacterInput
 
         void OnFire(InputValue inputValue){
             InputFireEvent.Invoke();
+        }
+        void OnAttack(InputValue inputValue){
+            InputAttackEvent.Invoke();
         }
 
         private void Update() {

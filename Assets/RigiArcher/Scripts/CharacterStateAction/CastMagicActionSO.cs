@@ -14,7 +14,7 @@ namespace RigiArcher.CharacterAction
     public class CastMagicActionSO : ActionSO
     {
         [Header("Setting")]
-        public StateSO BaseState;
+        public StateSO SpellState;
 
         public override Action GetAction(StateMachine stateMachine)
         {
@@ -39,8 +39,9 @@ namespace RigiArcher.CharacterAction
         public override void OnStateEnter()
         {
             // to base state when spell done
-            _magicManager.CurrentEquipedMagic.SpellFinish.AddListener(()=> {
-                ThisStateMachine.SwitchState(((CastMagicActionSO)OriginSO).BaseState);
+            _magicManager.CurrentEquipedMagic.CastMagicFinish.AddListener(()=> {
+                Debug.Log("cast magic finish");
+                ThisStateMachine.SwitchState(((CastMagicActionSO)OriginSO).SpellState);
             });
 
             // cast magic

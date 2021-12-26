@@ -8,6 +8,8 @@ namespace RigiArcher.MeshSocket{
     {
         public enum SocketIdEnum{
             LeftHand,
+            RightHand,
+            Back
         }
 
         Dictionary<SocketIdEnum, MeshSocket> _socketMap = new Dictionary<SocketIdEnum, MeshSocket>();

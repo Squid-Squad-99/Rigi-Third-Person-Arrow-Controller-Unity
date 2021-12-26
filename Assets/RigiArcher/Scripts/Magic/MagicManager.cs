@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using RigiArcher;
 using RigiArcher.MeshSocket;
 
 namespace RigiArcher.Magic{
@@ -31,6 +32,7 @@ namespace RigiArcher.Magic{
 
         // reference
         private MeshSocketManager _meshSocketManager;
+        private RigiArcherObject _rigiArcherObject;
         private Animator _animator;
         private int _leftArmAnimLayerIndex;
         private int _animParamCastMagicId;
@@ -41,6 +43,7 @@ namespace RigiArcher.Magic{
             // reference
             _meshSocketManager = GetComponent<MeshSocketManager>();
             _animator = GetComponent<Animator>();
+            _rigiArcherObject = GetComponent<RigiArcherObject>();
             _leftArmAnimLayerIndex = _animator.GetLayerIndex("LeftArm");
             _animParamCastMagicId = Animator.StringToHash("CastMagic");
 
@@ -62,7 +65,7 @@ namespace RigiArcher.Magic{
             _currentEquippedMagicId = magicId;
 
             //equip magic
-            CurrentEquipedMagic.Equip();
+            CurrentEquipedMagic.Equip(_rigiArcherObject);
 
             // hold to left hand
             _meshSocketManager.Attach(CurrentEquipedMagic.transform, MeshSocketManager.SocketIdEnum.LeftHand);
@@ -87,7 +90,11 @@ namespace RigiArcher.Magic{
                 Debug.Log("[MagicManager] can't cast magic, (not cool down yet");
             }
 
-        }   
+        }  
+
+        public void CancelMagic(){
+            CurrentEquipedMagic.CancelMagic();
+        } 
 
         private void PlayCastMagicAnimation(){
             // play cast magic animation

@@ -14,6 +14,7 @@ namespace RigiArcher.CharacterInput
     {
         public UnityEvent InputJumpEvent { get;}
         public UnityEvent InputFireEvent { get;}
+        public UnityEvent InputAttackEvent { get;}
         public UnityEvent<Vector2> InputLookEvent { get;}
         public UnityEvent<Vector2> InputMoveEvent { get;}
     }

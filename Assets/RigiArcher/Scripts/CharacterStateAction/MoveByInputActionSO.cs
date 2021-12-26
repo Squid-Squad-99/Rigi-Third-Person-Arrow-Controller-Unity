@@ -32,7 +32,6 @@ namespace RigiArcher.CharacterAction{
         private Transform _vCamTarget; 
         private UnityEvent<Vector2> _inputMoveEvent; 
         private Rigidbody _rigidbody;
-        private Animator _animator;
 
         public MoveByInputAction(ActionSO actionSO, StateMachine stateMachine) : base(actionSO, stateMachine){}
 
@@ -42,7 +41,6 @@ namespace RigiArcher.CharacterAction{
             _vCamTarget = ThisStateMachine.VCamTarget;
             _inputMoveEvent = ThisStateMachine.GetComponent<ICharacterInputBroadcaster>().InputMoveEvent;
             _rigidbody = ThisStateMachine.GetComponent<Rigidbody>();
-            _animator = ThisStateMachine.CharacterAnimator;
 
             // init data
             _cacheInputMoveValue = Vector2.zero;
@@ -88,8 +86,6 @@ namespace RigiArcher.CharacterAction{
 
             // change velocity & animation param
             _rigidbody.velocity = newVelocity;
-            _animator.SetFloat(_animIdSpeed, newHorizontalVelocity.magnitude);
-            
         }
 
         private void OnInputMove(Vector2 inputValue)

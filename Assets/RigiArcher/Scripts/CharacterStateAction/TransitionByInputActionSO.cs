@@ -17,6 +17,7 @@ namespace RigiArcher.CharacterAction{
 
         public enum CharacterInputEventEnum{
             InputJumpEvent,
+            InputFireEvent,
         }
 
 
@@ -38,7 +39,10 @@ namespace RigiArcher.CharacterAction{
             switch (((TransitionByInputActionSO)OriginSO).ListenInputEvent)
             {
                 case TransitionByInputActionSO.CharacterInputEventEnum.InputJumpEvent:
-                _listeningInputEvent = characterInputBroadcaster.InputJumpEvent;
+                    _listeningInputEvent = characterInputBroadcaster.InputJumpEvent;
+                    break;
+                case TransitionByInputActionSO.CharacterInputEventEnum.InputFireEvent:
+                    _listeningInputEvent = characterInputBroadcaster.InputFireEvent;
                     break;
                 default:
                     break;

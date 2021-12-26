@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ToMove2FallByFreeFall
   m_EditorClassIdentifier: 
   ToSTateSO: {fileID: 11400000, guid: c48247b0156e68f4f82e450fff5a92ea, type: 2}
-  FreeFallMinSpeed: 3
+  FreeFallMinSpeed: 2

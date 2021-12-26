@@ -28,7 +28,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4875911876515342818}
   - {fileID: 8693797969854121961}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,12 +49,17 @@ MonoBehaviour:
   _castMagicTime: 0.4
   _coolDownTimeDelta: 0
   _castMagicTimeDelta: 0
+  _isCasting: 0
+  _isSpelling: 0
+  _isCoolDowning: 0
   CastMagicFinish:
     m_PersistentCalls:
       m_Calls: []
   SpellFinish:
     m_PersistentCalls:
       m_Calls: []
+  _ropeSpeed: 20
+  _ropePrefab: {fileID: 7303095770021779588, guid: eefc78936cbb933478443a6c36d59d69, type: 3}
 --- !u!1 &2148897697296496068
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +91,7 @@ Transform:
   m_LocalScale: {x: 0.11543, y: 0.11543, z: 0.11543}
   m_Children: []
   m_Father: {fileID: 1448530133472351670}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1202098008453811969
 MeshFilter:
@@ -151,33 +155,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &6429529968786997081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4875911876515342818}
-  m_Layer: 0
-  m_Name: RopeHeadPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4875911876515342818
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6429529968786997081}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1448530133472351670}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
